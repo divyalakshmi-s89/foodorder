@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeya Homie Restaurant - Offer!</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('images/decor1.png') center/cover no-repeat;
+      background-size: cover;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff4500;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 2em;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .offer-section {
+      background-color: #fff3cddb;
+      border-left: 8px solid #ff8800;
+      padding: 20px;
+      margin: 30px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #b35c00;
+      box-shadow: 0 0 15px rgba(255, 136, 0, 0.2);
+      position: relative;
+    }
+
+    .offer-img {
+      position: absolute;
+      top: 5px;
+      width: 150px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .left-img {
+      left: 100px;
+    }
+
+    .right-img {
+      right: 100px;
+    }
+
+    .menu-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .menu-card {
+      background-color: #ffffffcc; /* translucent white */
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 500px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      text-align: center;
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: scale(1.02);
+    }
+
+    .menu-card h2 {
+      color: #ff4500;
+      margin-bottom: 10px;
+    }
+
+    .menu-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .order-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      background-color: #ff4500;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background-color: #e03e00;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🏨 Welcome to Jeya Homie Restaurant 🍽️
+  </header>
+
+  <section class="offer-section">
+    <img src="images/parata.jpg" alt="Parata" class="offer-img left-img" />
+    <img src="images/omlete1.jpg" alt="Omelet" class="offer-img right-img" />
+    👉 🔥 <strong>Paratto Express Offer</strong> 🔥 👈<br>
+    Buy 10 Parattos & Get 2 Omelets FREE! 🥳
+  </section>
+
+  <section class="menu-section">
+    <div class="menu-card">
+      <h2>🌞 Morning Specials</h2>
+      <ul>
+        <li>Idly - ₹8</li>
+        <li>Vada - ₹8</li>
+        <li>Poori - ₹15</li>
+      </ul>
+      <a class="order-btn" href="order.html?category=morning">Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <h2>🍛 Afternoon Feast</h2>
+      <ul>
+        <li>Meals - ₹90</li>
+        <li>Curd Rice - ₹30</li>
+        <li>Tomato Rice - ₹30</li>
+        <li>Lemon Rice - ₹30</li>
+      </ul>
+      <a class="order-btn" href="order.html?category=afternoon">Order Now</a>
+    </div>
+
+    <div class="menu-card">
+      <h2>🌙 Night Delights</h2>
+      <ul>
+        <li>Paratto - ₹13</li>
+        <li>Dosa - ₹35</li>
+        <li>Idly - ₹8</li>
+        <li>Egg Varieties - ₹20</li>
+      </ul>
+      <a class="order-btn" href="order.html?category=night">Order Now</a>
+    </div>
+  </section>
+
+  <footer>
+    📍 Visit us today & enjoy delicious food with great offers!<br>
+    <p>© 2025 Jeya Homie Restaurant - Phone: 9629188981</p>
+    <p>Home Delivery Available</p>
+  </footer>
+
+</body>
+</html>

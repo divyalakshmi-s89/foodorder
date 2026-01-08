@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You - Jeya Homie Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: url('images/decor3.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+      margin: 0;
+      color: #333;
+    }
+    h1 {
+      color: #ff4500;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1em;
+      color: #333;
+    }
+    .order-summary {
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .order-summary h2 {
+      color: #b35c00;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+    .total, .payment-mode {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #e65100;
+    }
+    .home-btn {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #ff4500;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .home-btn:hover {
+      background-color: #e03e00;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Thank You for Your Order!</h1>
+  <p>We’ve received your delicious selection. Your food will be ready soon! 🍽️</p>
+  <div class="order-summary">
+    <h2>Your Order Summary:</h2>
+    <ul id="orderList"></ul>
+    <div class="total" id="totalBill"></div>
+    <div class="payment-mode" id="paymentModeDisplay"></div>
+  </div>
+  <button class="home-btn" onclick="goToHome()">Go to Home</button>
+  <script>
+    const prices = {
+      "Idly": 8,
+      "Vada": 8,
+      "Poori": 15,
+      "Meals": 90,
+      "Curd Rice": 30,
+      "Tomato Rice": 30,
+      "Lemon Rice": 30,
+      "Paratto": 13,
+      "Dosa": 35,
+      "Egg Varieties": 20
+    };
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const paymentMode = localStorage.getItem('paymentMode') || "Not selected";
+    const orderList = document.getElementById('orderList');
+    const totalBill = document.getElementById('totalBill');
+    const paymentModeDisplay = document.getElementById('paymentModeDisplay');
+    let total = 0;
+    if (orders.length === 0) {
+      orderList.innerHTML = "<li>No items found in your order.</li>";
+    } else {
+      orders.forEach(order => {
+        const price = prices[order.item] || 0;
+        const itemTotal = price * order.quantity;
+        total += itemTotal;
+        const li = document.createElement('li');
+        li.textContent = `${order.quantity} × ${order.item} - ₹${itemTotal}`;
+        orderList.appendChild(li);
+      });
+      totalBill.textContent = `Total Bill: ₹${total}`;
+      paymentModeDisplay.textContent = `Payment Mode: ${paymentMode}`;
+    }
+    function goToHome() {
+      localStorage.removeItem('orders');
+      localStorage.removeItem('paymentMode');
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Now - Jeya Homie Restaurant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center center;
+      background-size: cover;
+      text-align: center;
+      padding: 40px;
+      color: #333;
+    }
+    h2 { color: #ff4500; }
+    select, input[type="number"] { padding: 8px; font-size: 1em; margin: 10px; }
+    .menu-item { margin: 10px auto; display: flex; justify-content: center; align-items: center; gap: 20px; }
+    label { font-weight: bold; }
+    input[type="number"] { width: 60px; }
+    button { background: #ff4500; color: #fff; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 30px; }
+    button:hover { background: #e03e00; }
+    #paymentContainer { margin-top: 30px; }
+    /* Optional translucent card */
+    #orderForm { background: #ffffffcc; border-radius: 12px; display:inline-block; padding:30px 40px; box-shadow:0 8px 16px rgba(0,0,0,.15); }
+  </style>
+</head>
+<body>
+  <h2 id="menuTitle">Order Menu</h2>
+  <form id="orderForm" onsubmit="return confirmOrder(event)">
+    <div id="menuItemsContainer"></div>
+    <div id="paymentContainer" style="display:none;">
+      <h3>Select Payment Mode:</h3>
+      <select id="paymentMode">
+        <option value="Cash on Delivery" selected>Cash on Delivery (COD)</option>
+        <option value="Card">Card</option>
+        <option value="UPI">UPI</option>
+      </select>
+    </div>
+    <button type="submit" id="confirmBtn" style="display:none;">Confirm Order</button>
+  </form>
+  <script>
+    const menuItems={morning:["Idly","Vada","Poori"],afternoon:["Meals","Curd Rice","Tomato Rice","Lemon Rice"],night:["Paratto","Dosa","Idly","Egg Varieties"]};
+    const params=new URLSearchParams(location.search);const category=params.get("category");
+    const container=document.getElementById('menuItemsContainer');
+    const title=document.getElementById('menuTitle');
+    const confirmBtn=document.getElementById('confirmBtn');
+    const paymentContainer=document.getElementById('paymentContainer');
+    if(menuItems[category]){
+      title.textContent=`${category.charAt(0).toUpperCase()+category.slice(1)} Order`;
+      confirmBtn.style.display="inline-block";paymentContainer.style.display="block";
+      menuItems[category].forEach(item=>{const div=document.createElement('div');div.className='menu-item';
+        const label=document.createElement('label');label.textContent=item;
+        const input=document.createElement('input');input.type='number';input.min='0';input.value='0';input.name=item;
+        div.appendChild(label);div.appendChild(input);container.appendChild(div);});
+    }else{title.textContent='Menu Not Found';}
+    function confirmOrder(e){e.preventDefault();const inputs=container.querySelectorAll("input[type='number']");const payment=document.getElementById('paymentMode').value;const orders=[];
+      inputs.forEach(inp=>{const q=parseInt(inp.value,10);if(q>0)orders.push({item:inp.name,quantity:q});});
+      if(!orders.length){alert('Please select at least one item.');return false;}
+      localStorage.setItem('orders',JSON.stringify(orders));localStorage.setItem('paymentMode',payment);
+      location.href='confirm.html';}
+  </script>
+</body>
+</html>
